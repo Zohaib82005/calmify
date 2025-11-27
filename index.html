@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CalmiFy — Stress Management</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --soft-blue: #BEE7F7;
+      --mint-green: #CFF7E6;
+      --light-grey: #F6F8FA;
+      --deep-navy: #12385B;
+      --muted: #718096;
+      --accent: #81C7AC;
+      --glass: rgba(255,255,255,0.7);
+    }
+
+    body{
+      font-family: 'Lato', sans-serif;
+      background: linear-gradient(180deg, var(--light-grey) 0%, #ffffff 100%);
+      color: var(--deep-navy);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Navbar */
+    .navbar{
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.6);
+      box-shadow: 0 6px 18px rgba(18,56,91,0.06);
+    }
+    .brand-logo{
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight:700;
+      color:var(--deep-navy);
+    }
+    .brand-mark{
+      width:42px;height:42px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,var(--soft-blue),var(--mint-green));
+      box-shadow: 0 6px 18px rgba(18,56,91,0.08);
+      color:#08324a;font-weight:700;font-size:20px;
+    }
+
+    /* Hero */
+    .hero{
+      padding:4.5rem 0;
+    }
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.9));
+      border-radius:16px;
+      padding:2rem;
+      box-shadow: 0 10px 30px rgba(6,27,41,0.06);
+    }
+    .cta-btn{
+      border-radius:12px;
+      padding: .75rem 1.2rem;
+    }
+
+    /* sections */
+    section{
+      padding:3.5rem 0;
+    }
+
+    /* About boxes */
+    .info-card{
+      border-radius:12px; padding:1.25rem;
+      background:var(--glass);
+      box-shadow: 0 6px 18px rgba(18,56,91,0.04);
+    }
+
+    /* Assessment */
+    .quiz-card{ padding:1.25rem; border-radius:12px; background: #fff; box-shadow: 0 8px 30px rgba(9,30,45,0.05) }
+    .option-btn{ text-align:left; border-radius:10px; transition:transform .12s ease, box-shadow .12s ease; }
+    .option-btn:hover{ transform:translateY(-3px); box-shadow:0 8px 20px rgba(12,36,50,0.06); }
+
+    /* Tools */
+    .breath-circle{
+      width:160px;height:160px;border-radius:100%;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow: 0 8px 30px rgba(12,36,50,0.06);
+      margin:0 auto;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--soft-blue));
+      animation: breathe 8s ease-in-out infinite;
+    }
+    @keyframes breathe{
+      0% { transform: scale(0.7); opacity:.9; }
+      50% { transform: scale(1.15); opacity:1; }
+      100% { transform: scale(0.7); opacity:.9; }
+    }
+
+    /* Mindfulness timer display */
+    .timer-display { font-size:2.4rem; font-weight:600; font-family:'Poppins',sans-serif; color:var(--deep-navy); }
+
+    /* Footer */
+    footer{ padding:2rem 0; background:transparent; color:var(--muted) }
+    .muted { color:var(--muted) }
+
+    /* responsive tweaks */
+    @media (max-width:767px){
+      .hero{ padding:3rem 0; }
+    }
+
+    /* small smooth reveal */
+    .reveal { transform: translateY(10px); opacity:0; transition:all .5s ease; }
+    .reveal.show { transform:none; opacity:1; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand brand-logo" href="#">
+        <div class="brand-mark">C</div>
+        <div>
+          CalmiFy<br>
+          <small class="text-muted" style="font-size:11px">Relief. Support. Balance.</small>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About Stress</a></li>
+          <li class="nav-item"><a class="nav-link" href="#assessment">Assessment Test</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tools">Tools</a></li>
+          <li class="nav-item"><a class="nav-link btn btn-outline-primary ms-2 cta-btn" href="#assessment">Take Quiz</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="hero-card">
+            <h1 style="font-family:'Poppins'; font-weight:700; color:var(--deep-navy)">Welcome to CalmiFy</h1>
+            <p class="lead muted">Understand your stress, measure it quickly with our client-side assessment, and try practical tools to regain balance — all right here, no sign-ups required.</p>
+            <div class="d-flex gap-2 mt-3">
+              <a href="#assessment" class="btn btn-primary cta-btn"><i class="bi bi-clipboard-check"></i> Take the Stress Test</a>
+              <a href="#tools" class="btn btn-outline-secondary cta-btn"><i class="bi bi-lightning"></i> Try Tools</a>
+            </div>
+            <hr class="my-4" />
+            <div class="row text-muted small">
+              <div class="col-6"><i class="bi bi-check-circle-fill text-success"></i> Quick assessment</div>
+              <div class="col-6"><i class="bi bi-lock-fill text-muted"></i> Private — runs locally</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 text-center mt-4 mt-lg-0">
+          <div style="max-width:420px;margin:0 auto;">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=880&auto=format&fit=crop&crop=faces" alt="calm" class="img-fluid rounded-4 shadow-sm" style="object-fit:cover;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT STRESS -->
+  <section id="about">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 style="font-family:'Poppins'">About Stress</h2>
+        <p class="muted">What stress is, the common types, causes, signs and possible effects.</p>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="info-card reveal">
+            <h5>What is stress?</h5>
+            <p class="muted">Stress is the body and mind's response to demands or threats. Short-term stress can be useful, but prolonged stress can affect health and daily functioning.</p>
+            <h6 class="mt-3">Types</h6>
+            <ul>
+              <li>Acute stress — short-term, often from immediate pressures.</li>
+              <li>Chronic stress — long-term, ongoing pressures (work, study, relationships).</li>
+              <li>Episodic acute stress — frequent short spikes of stress.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="info-card reveal">
+            <h5>Causes, Signs & Effects</h5>
+            <h6>Common causes</h6>
+            <p class="muted">Academic pressure, life transitions, work overload, social challenges, financial issues.</p>
+            <h6>Signs to look for</h6>
+            <p class="muted">Difficulty sleeping, irritability, low concentration, muscle tension, changes in appetite.</p>
+            <h6>Possible effects</h6>
+            <p class="muted">Prolonged stress can affect mood, immunity, sleep quality, and performance — it's important to notice early and use coping tools.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSESSMENT TEST -->
+  <section id="assessment" class="bg-white">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 style="font-family:'Poppins'">Stress Assessment Test</h2>
+        <p class="muted">A short multiple-choice quiz that calculates a stress score locally (no data leaves your browser).</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="quiz-card">
+            <div id="quiz-area">
+              <div id="q-header" class="mb-3">
+                <strong id="q-number">1.</strong>
+                <span id="q-text" style="margin-left:.6rem">Loading...</span>
+              </div>
+              <div id="q-options" class="d-grid gap-2"></div>
+              <div class="d-flex justify-content-between mt-3">
+                <button id="prevBtn" class="btn btn-outline-secondary btn-sm" disabled>Previous</button>
+                <button id="nextBtn" class="btn btn-primary btn-sm">Next</button>
+              </div>
+            </div>
+
+            <div id="result-area" style="display:none;">
+              <div class="text-center">
+                <h3 id="result-title" class="mt-2"></h3>
+                <p id="result-desc" class="muted"></p>
+                <div class="mb-3">
+                  <h4>Recommendations</h4>
+                  <ul id="result-recs" class="text-start"></ul>
+                </div>
+                <button id="retakeBtn" class="btn btn-outline-primary">Retake Quiz</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5 mt-3 mt-lg-0">
+          <div class="info-card">
+            <h6>How this works</h6>
+            <p class="muted">Each answer has a score (0–3). Your total determines a stress category and tailored recommendations.</p>
+            <hr>
+            <h6>Scoring guide</h6>
+            <ol class="muted">
+              <li>0–9: Low stress</li>
+              <li>10–18: Moderate stress</li>
+              <li>19–27: High stress</li>
+              <li>28+: Critical — seek support</li>
+            </ol>
+            <hr>
+            <p class="muted small">This is a self-assessment and not a clinical diagnosis. For severe or persistent distress seek professional help.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section id="tools">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 style="font-family:'Poppins'">Stress Management Tools</h2>
+        <p class="muted">Simple front-end tools to try right away.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Breathing -->
+        <div class="col-md-4">
+          <div class="info-card text-center">
+            <h5>Guided Breathing</h5>
+            <p class="muted small">Follow the circle: breathe in when it expands, out when it contracts.</p>
+            <div class="breath-circle my-3" id="breathCircle">
+              <div style="text-align:center">
+                <strong id="breathText">Breathe</strong>
+              </div>
+            </div>
+            <div class="d-grid">
+              <button id="toggleBreath" class="btn btn-outline-primary">Pause/Resume</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mindfulness Timer -->
+        <div class="col-md-4">
+          <div class="info-card text-center">
+            <h5>Mindfulness Timer</h5>
+            <p class="muted small">Set a short timer to focus for a few minutes.</p>
+            <div class="my-3">
+              <div class="timer-display" id="timerDisplay">02:00</div>
+            </div>
+            <div class="d-flex gap-2 justify-content-center">
+              <button id="startTimer" class="btn btn-primary btn-sm">Start</button>
+              <button id="stopTimer" class="btn btn-outline-secondary btn-sm">Stop</button>
+              <button id="resetTimer" class="btn btn-outline-secondary btn-sm">Reset</button>
+            </div>
+
+            <div class="mt-3 small text-muted">
+              <label>Duration: </label>
+              <select id="timerSelect" class="form-select form-select-sm" style="width:150px;display:inline-block;margin-left:.5rem">
+                <option value="60">1 min</option>
+                <option value="120" selected>2 min</option>
+                <option value="300">5 min</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quotes & Tips -->
+        <div class="col-md-4">
+          <div class="info-card">
+            <h5>Motivational Quotes</h5>
+            <p class="muted small">Random gentle reminders.</p>
+            <div id="quoteBox" class="p-3 rounded-3 mb-3" style="background:linear-gradient(180deg,#fff,#F7FFFB);">
+              <blockquote id="quoteText" style="margin:0;font-style:italic">“Take one step at a time.”</blockquote>
+              <div class="text-end mt-2 small muted" id="quoteAuthor">— CalmiFy</div>
+            </div>
+            <div class="d-flex gap-2">
+              <button id="newQuote" class="btn btn-outline-primary btn-sm">New Quote</button>
+              <button id="copyQuote" class="btn btn-outline-secondary btn-sm">Copy</button>
+            </div>
+
+            <hr class="my-3" />
+            <h6>Relaxation Tips</h6>
+            <ul class="muted small">
+              <li>Practice 5 minutes of focused breathing daily.</li>
+              <li>Take short walking breaks during study sessions.</li>
+              <li>Limit screen time before bed; maintain a sleep routine.</li>
+              <li>Talk with friends, mentors, or counselors when overwhelmed.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT A PSYCHOLOGIST -->
+<section id="contact-psychologist" style="padding: 3.5rem 0;">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 style="font-family:'Poppins';">Contact a Psychologist</h2>
+      <p class="muted">If you feel overwhelmed or need professional guidance, reach out to a certified psychologist.</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="p-4 rounded-4 shadow-sm" style="background:white;">
+          <form>
+            <div class="mb-3">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-control" placeholder="Enter your full name"/>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Your Email</label>
+              <input type="email" class="form-control" placeholder="example@gmail.com"/>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Select Your Concern</label>
+              <select class="form-select">
+                <option>Academic Stress</option>
+                <option>Work Stress</option>
+                <option>Emotional Issues</option>
+                <option>Anxiety / Panic</option>
+                <option>Relationship Stress</option>
+                <option>General Consultation</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" rows="4" placeholder="Describe how you're feeling..."></textarea>
+            </div>
+
+            <button class="btn btn-primary w-100" type="button">
+              <i class="bi bi-send"></i> Send Message
+            </button>
+
+            <p class="text-center muted small mt-2">
+              *This is a client-side demo form. No data is stored or sent to a server.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- OUR TEAM MEMBERS -->
+<section id="team" style="padding: 3.5rem 0; background:#F8FBFD;">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 style="font-family:'Poppins';">Our Team</h2>
+      <p class="muted">Meet the dedicated members behind CalmiFy.</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- Team Member 1 -->
+      <div class="col-md-4 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-4 text-center p-3">
+          <img src="saim.webp" 
+               class="rounded-circle mx-auto mb-3" 
+               width="140" height="140" alt="Team Member">
+          <h5 class="fw-bold" style="font-family:'Poppins';">Saim Naveed</h5>
+          <p class="muted small">Psychologist / Wellness Expert</p>
+        </div>
+      </div>
+
+      <!-- Team Member 2 -->
+      <div class="col-md-4 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-4 text-center p-3">
+          <img src="abdullah.jpg" 
+               class="rounded-circle mx-auto mb-3" 
+               width="140" height="140" alt="Team Member">
+          <h5 class="fw-bold" style="font-family:'Poppins';">Abdullah Amir</h5>
+          <p class="muted small">First Patient</p>
+        </div>
+      </div>
+
+      <!-- Team Member 3 -->
+      <div class="col-md-4 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-4 text-center p-3">
+          <img src="anas.jpg" 
+               class="rounded-circle mx-auto mb-3" 
+               width="140" height="140" alt="Team Member">
+          <h5 class="fw-bold" style="font-family:'Poppins';">Muhammad Anas</h5>
+          <p class="muted small">Company Owner</p>
+        </div>
+      </div>
+      <!-- Team Member 3 -->
+      <div class="col-md-4 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-4 text-center p-3">
+          <img src="zohaib.jpg" 
+               class="rounded-circle mx-auto mb-3" 
+               width="140" height="140" alt="Team Member">
+          <h5 class="fw-bold" style="font-family:'Poppins';">Muhammad Zohaib</h5>
+          <p class="muted small">Masoom Banda</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- FOOTER -->
+  <footer class="mt-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center flex-column flex-md-row gap-3">
+        <div>
+          <strong>CalmiFy</strong>
+          <div class="muted small">Relief. Support. Balance.</div>
+        </div>
+        <div class="muted small">© <span id="year"></span> CalmiFy — Built with care</div>
+        <div class="d-flex gap-2">
+          <a class="muted" href="#" title="Privacy"><i class="bi bi-shield-lock"></i></a>
+          <a class="muted" href="#" title="Disclaimer"><i class="bi bi-exclamation-triangle"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ----- small helpers -----
+    document.getElementById('year').innerText = new Date().getFullYear();
+
+    function revealAll(){
+      document.querySelectorAll('.reveal').forEach((el, i) => {
+        setTimeout(()=> el.classList.add('show'), 120*i);
+      });
+    }
+    window.addEventListener('load', revealAll);
+
+    // ----- QUIZ DATA & LOGIC -----
+    const questions = [
+      { q: "Over the last 2 weeks, how often have you felt nervous or anxious?", a: [["Not at all",0],["Several days",1],["More than half the days",2],["Nearly every day",3]]},
+      { q: "How often did you have trouble relaxing?", a: [["Not at all",0],["Several days",1],["More than half the days",2],["Nearly every day",3]]},
+      { q: "How often have you found it difficult to concentrate?", a: [["Not at all",0],["Several days",1],["More than half the days",2],["Nearly every day",3]]},
+      { q: "How often did you feel overwhelmed by responsibilities?", a: [["Not at all",0],["Several days",1],["More than half the days",2],["Nearly every day",3]]},
+      { q: "How often have you had trouble sleeping due to worry?", a: [["Not at all",0],["Several days",1],["More than half the days",2],["Nearly every day",3]]},
+      { q: "How often did you experience physical symptoms (tension, headaches)?", a: [["Not at all",0],["Several days",1],["More than half the days",2],["Nearly every day",3]]},
+      { q: "How often have you felt irritable or angry?", a: [["Not at all",0],["Several days",1],["More than half the days",2],["Nearly every day",3]]},
+      { q: "How often did you feel unable to cope effectively?", a: [["Not at all",0],["Several days",1],["More than half the days",2],["Nearly every day",3]]},
+    ];
+
+    let answers = new Array(questions.length).fill(null);
+    let cur = 0;
+
+    const qNumber = document.getElementById('q-number');
+    const qText = document.getElementById('q-text');
+    const qOptions = document.getElementById('q-options');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const resultArea = document.getElementById('result-area');
+    const quizArea = document.getElementById('quiz-area');
+
+    function renderQuestion(index){
+      const item = questions[index];
+      qNumber.innerText = (index+1) + '.';
+      qText.innerText = item.q;
+      qOptions.innerHTML = '';
+      item.a.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'btn option-btn border d-block';
+        btn.innerHTML = `<div class="d-flex justify-content-between align-items-center"><div>${opt[0]}</div><div class="small muted">${opt[1]} pts</div></div>`;
+        btn.addEventListener('click', () => {
+          answers[index] = opt[1];
+          // visual selection
+          document.querySelectorAll('#q-options .option-btn').forEach(b => b.classList.remove('btn-primary','text-white'));
+          btn.classList.add('btn-primary','text-white');
+        });
+        if (answers[index] === opt[1]) btn.classList.add('btn-primary','text-white');
+        qOptions.appendChild(btn);
+      });
+
+      prevBtn.disabled = index === 0;
+      nextBtn.innerText = index === questions.length - 1 ? 'Submit' : 'Next';
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (cur === 0) return;
+      cur--;
+      renderQuestion(cur);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      // if not answered, warn
+      if (answers[cur] === null){
+        // gentle alert
+        nextBtn.classList.add('btn-warning');
+        setTimeout(()=> nextBtn.classList.remove('btn-warning'), 800);
+        return;
+      }
+      if (cur < questions.length - 1){
+        cur++;
+        renderQuestion(cur);
+      } else {
+        showResults();
+      }
+    });
+
+    function showResults(){
+      // compute score
+      const total = answers.reduce((s, v) => s + (v||0), 0);
+      let title = '', desc = '', recs = [];
+      if (total <= 9){
+        title = 'Low stress';
+        desc = 'Your current stress level appears low. Keep using healthy routines to maintain balance.';
+        recs = ['Keep a consistent sleep schedule','Continue small daily self-care','Practice brief breathing exercises when needed'];
+      } else if (total <= 18){
+        title = 'Moderate stress';
+        desc = 'You show signs of moderate stress. Consider regular self-care practices and time-management strategies.';
+        recs = ['Schedule short breaks during study/work','Try guided relaxation 2–3 times a week','Limit caffeine late in the day'];
+      } else if (total <= 27){
+        title = 'High stress';
+        desc = 'Your stress level is high. Use active coping strategies and consider talking with a counselor or mentor.';
+        recs = ['Use breathing techniques daily','Talk to a trusted friend or counselor','Prioritize tasks and set boundaries'];
+      } else {
+        title = 'Critical stress (seek support)';
+        desc = 'Your responses suggest critical stress. Please consider contacting a mental health professional or support services immediately.';
+        recs = ['Seek professional or campus counseling','If you feel unsafe, contact emergency help','Share how you feel with someone you trust'];
+      }
+
+      // show UI
+      quizArea.style.display = 'none';
+      resultArea.style.display = 'block';
+      document.getElementById('result-title').innerText = title;
+      document.getElementById('result-desc').innerText = desc;
+      const recUL = document.getElementById('result-recs');
+      recUL.innerHTML = '';
+      recs.forEach(r => {
+        const li = document.createElement('li');
+        li.innerText = r;
+        recUL.appendChild(li);
+      });
+    }
+
+    document.getElementById('retakeBtn').addEventListener('click', () => {
+      answers = new Array(questions.length).fill(null);
+      cur = 0;
+      quizArea.style.display = 'block';
+      resultArea.style.display = 'none';
+      renderQuestion(cur);
+    });
+
+    // initialize quiz
+    renderQuestion(0);
+
+    // ----- BREATHING CONTROL -----
+    const breathCircle = document.getElementById('breathCircle');
+    const toggleBreathBtn = document.getElementById('toggleBreath');
+    let breathing = true;
+    toggleBreathBtn.addEventListener('click', () => {
+      breathing = !breathing;
+      breathCircle.style.animationPlayState = breathing ? 'running' : 'paused';
+      toggleBreathBtn.innerText = breathing ? 'Pause' : 'Resume';
+    });
+
+    // Pause breathing on small screens by default to preserve battery
+    if (window.innerWidth < 480) {
+      breathing = false;
+      breathCircle.style.animationPlayState = 'paused';
+      toggleBreathBtn.innerText = 'Resume';
+    }
+
+    // ----- MINDFULNESS TIMER -----
+    let timer = null;
+    let timeLeft = 120; // seconds
+    const timerDisplay = document.getElementById('timerDisplay');
+    const startTimerBtn = document.getElementById('startTimer');
+    const stopTimerBtn = document.getElementById('stopTimer');
+    const resetTimerBtn = document.getElementById('resetTimer');
+    const timerSelect = document.getElementById('timerSelect');
+
+    function renderTimer(){
+      const mm = String(Math.floor(timeLeft/60)).padStart(2,'0');
+      const ss = String(timeLeft%60).padStart(2,'0');
+      timerDisplay.innerText = mm + ':' + ss;
+    }
+    timerSelect.addEventListener('change', () => {
+      timeLeft = parseInt(timerSelect.value,10);
+      renderTimer();
+    });
+    resetTimerBtn.addEventListener('click', () => {
+      clearInterval(timer); timer = null;
+      timeLeft = parseInt(timerSelect.value,10);
+      renderTimer();
+    });
+    stopTimerBtn.addEventListener('click', () => {
+      clearInterval(timer); timer = null;
+    });
+    startTimerBtn.addEventListener('click', () => {
+      if (timer) return;
+      if (timeLeft <= 0) timeLeft = parseInt(timerSelect.value,10);
+      timer = setInterval(() => {
+        timeLeft--;
+        renderTimer();
+        if (timeLeft <= 0) {
+          clearInterval(timer); timer = null;
+          // gentle bell
+          try { new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=').play(); } catch(e){}
+        }
+      }, 1000);
+    });
+    // initial timer value
+    timeLeft = parseInt(timerSelect.value,10);
+    renderTimer();
+
+    // ----- QUOTES -----
+    const quotes = [
+      {t:"Take one step at a time. Small steps add up.", a:"CalmiFy"},
+      {t:"Breathe. You are doing the best you can right now.", a:"Unknown"},
+      {t:"This too shall pass. Be kind to yourself.", a:"CalmiFy"},
+      {t:"A calm mind brings inner strength and self-confidence.", a:"Lao Tzu"},
+      {t:"Focus on progress, not perfection.", a:"CalmiFy"}
+    ];
+    const quoteText = document.getElementById('quoteText');
+    const quoteAuthor = document.getElementById('quoteAuthor');
+    function newQuote(){
+      const q = quotes[Math.floor(Math.random()*quotes.length)];
+      quoteText.innerText = '“' + q.t + '”';
+      quoteAuthor.innerText = '— ' + q.a;
+    }
+    document.getElementById('newQuote').addEventListener('click', newQuote);
+    document.getElementById('copyQuote').addEventListener('click', () => {
+      navigator.clipboard?.writeText(quoteText.innerText + ' ' + quoteAuthor.innerText).then(() => {
+        alert('Quote copied to clipboard');
+      }).catch(()=>{ alert('Copy failed') });
+    });
+    newQuote();
+
+    // ensure navbar links smooth scroll
+    document.querySelectorAll('a.nav-link, a.btn[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        if (a.hash) {
+          e.preventDefault();
+          document.querySelector(a.hash).scrollIntoView({behavior:'smooth', block:'start'});
+          // collapse navbar
+          const offcanvas = document.querySelector('.navbar-collapse');
+          if (offcanvas.classList.contains('show')) { new bootstrap.Collapse(offcanvas).toggle(); }
+        }
+      });
+    });
+
+  </script>
+</body>
+</html>
